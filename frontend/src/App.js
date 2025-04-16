@@ -708,6 +708,7 @@ function App() {
         autoHideDuration={3000}
         onClose={handleCloseSnackbar}
         message={snackbarMessage}
+        severity={snackbarSeverity}
         action={
           <IconButton
             size="small"
