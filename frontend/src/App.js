@@ -57,6 +57,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 function App() {
   const theme = useTheme();
+  const [mounted, setMounted] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [text, setText] = useState('');
@@ -73,6 +74,11 @@ function App() {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState('info');
   const [cancelToken, setCancelToken] = useState(null);
+
+  // Set mounted to true after initial render to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -302,6 +308,15 @@ function App() {
   const handleCloseSnackbar = () => {
     setSnackbarOpen(false);
   };
+
+  // Only render content after component is mounted to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
