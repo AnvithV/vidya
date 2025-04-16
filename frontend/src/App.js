@@ -71,6 +71,7 @@ function App() {
   const [definitionLoading, setDefinitionLoading] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('info');
   const [cancelToken, setCancelToken] = useState(null);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
