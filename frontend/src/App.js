@@ -53,6 +53,8 @@ import {
   AutoAwesome as AutoAwesomeIcon,
 } from '@mui/icons-material';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+
 function App() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -73,9 +75,6 @@ function App() {
   const [geminiAvailable, setGeminiAvailable] = useState(false);
   const [cancelToken, setCancelToken] = useState(null);
 
-  // API URL from environment variable or default to localhost
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-  
   useEffect(() => {
     // Check if Gemini is available
     const checkGemini = async () => {
