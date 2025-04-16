@@ -73,6 +73,7 @@ function App() {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [cancelToken, setCancelToken] = useState(null);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // Check if Gemini is available
     const checkGemini = async () => {
@@ -86,7 +87,7 @@ function App() {
     };
     
     checkGemini();
-  }, []); // Removed API_URL from dependencies
+  }, []);
 
   const handleWordClick = async (word) => {
     if (!word || word.length <= 3) return;
