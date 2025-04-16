@@ -51,7 +51,6 @@ import {
   Lightbulb as LightbulbIcon,
   School as SchoolIcon,
   Psychology as PsychologyIcon,
-  AutoAwesome as AutoAwesomeIcon,
 } from '@mui/icons-material';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
@@ -72,8 +71,6 @@ function App() {
   const [definitionLoading, setDefinitionLoading] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarSeverity, setSnackbarSeverity] = useState('info');
-  const [geminiAvailable, setGeminiAvailable] = useState(false);
   const [cancelToken, setCancelToken] = useState(null);
 
   useEffect(() => {
@@ -82,15 +79,14 @@ function App() {
       try {
         const response = await fetch(`${API_URL}/`);
         const data = await response.json();
-        setGeminiAvailable(data.gemini_available || false);
+        console.log('Gemini availability:', data.gemini_available);
       } catch (error) {
         console.error('Error checking Gemini availability:', error);
-        setGeminiAvailable(false);
       }
     };
     
     checkGemini();
-  }, [API_URL]);
+  }, []); // Removed API_URL from dependencies
 
   const handleWordClick = async (word) => {
     if (!word || word.length <= 3) return;
